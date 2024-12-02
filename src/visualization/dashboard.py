@@ -50,8 +50,7 @@ class Dashboard:
                 line=dict(color='#ff0000', width=2)
             )
         )
-        
-        # Add markers for composition changes dates
+
         if composition_changes_dates:
             change_values = [df[df['date'] == date]['index_value'].iloc[0] for date in composition_changes_dates]
             fig.add_trace(
@@ -164,7 +163,6 @@ class Dashboard:
         date_column = 'Date' if 'Date' in df.columns else 'date'
         comp_column = 'Composition' if 'Composition' in df.columns else 'composition'
         for date, comp in zip(df[date_column], df[comp_column]):
-            # Sort the tickers alphabetically for comparison
             current_comp = set(comp.split(','))
             
             if prev_comp is not None and current_comp != prev_comp:
@@ -232,7 +230,7 @@ class Dashboard:
         buffer = BytesIO()
         doc = SimpleDocTemplate(buffer, pagesize=letter)
         elements = []
-        
+
         # Add title
         styles = getSampleStyleSheet()
         elements.append(Paragraph("Index Report", styles['Title']))

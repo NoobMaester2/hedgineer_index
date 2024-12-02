@@ -1,9 +1,9 @@
 import streamlit as st
 import pandas as pd
 from datetime import datetime
-from src.data.stock_data import StockDataFetcher
-from src.data.database import DatabaseManager
-from src.index.hedgineer import HedgineerIndex
+from src.data.stock_data_fetcher import StockDataFetcher
+from src.data.database_manager import DatabaseManager
+from src.index.hedgineer_index import HedgineerIndex
 from src.visualization.dashboard import Dashboard
 from constants import LOOKBACK_DAYS_FOR_UI, INDEX_CONSTITUENTS_COUNT, DATA_STORE_PERIOD, INSTRUMENTS_TO_FETCH
 def main():

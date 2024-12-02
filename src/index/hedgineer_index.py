@@ -8,7 +8,6 @@ class HedgineerIndex:
 
     def calculate_index_for_day(self, date: str):
         """Calculate and store Hedgineer index for a specific day."""
-        # check if stocks table exists
         self.cursor.execute('''
             SELECT name FROM sqlite_master WHERE type='table' AND name='stocks';
         ''')
@@ -28,14 +27,6 @@ class HedgineerIndex:
 
         stock_data_sorted = sorted(stock_data, key=lambda x: x[2], reverse=True)
         top_k_stocks = stock_data_sorted[:INDEX_CONSTITUENTS_COUNT]
-        
-
-        # print(f"top_k_stocks: {top_k_stocks}")
-        # for stock in top_k_stocks:
-        #     print(f"stock: {stock[0]}, stock price: {stock[1]}")
-
-        # print(f"sum of top_k_stocks: {sum(stock[1] for stock in top_k_stocks)}")
-
 
         total_price = sum(stock[1] for stock in top_k_stocks)
         index_value = total_price / INDEX_CONSTITUENTS_COUNT
