@@ -76,3 +76,7 @@ hedgineer-index/
 ├── constants.py          # Configuration constants
 └── requirements.txt      # Project dependencies
 ```
+
+## Dashboard
+![screencapture-localhost-8501-2024-12-02-22_13_37](https://github.com/user-attachments/assets/27cc6c95-9938-47b6-8004-a101ca40a11b)
+
