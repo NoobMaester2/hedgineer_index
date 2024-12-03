@@ -5,29 +5,21 @@ A Python-based system for creating and managing a custom stock market index that
 ## Overview
 
 Hedgineer Index is a tool that:
-- Fetches real-time stock data from NASDAQ
-- Calculates a custom index based on the top K stocks by market capitalization 
+- Calculate index of top US stocks by their market cap. 
+- Fetches stock data from NASDAQ
+- Calculates a custom index based on the top K (=100 for this)  stocks by market capitalization 
 - Stores historical index data and compositions
 - Provides an interface to query index values for specific dates
 - Visualizes index performance through an interactive dashboard
 
 ## Features
 
-- **Dynamic Stock Universe**: Automatically fetches top US stocks from NASDAQ API
-- **Historical Data**: Maintains historical price and market cap data using Yahoo Finance
-- **Split Adjusted**: Handles stock splits automatically for accurate historical calculations
+- **Dynamic Stock Universe**: Fetch top US stocks tickers using NASDAQ API
+- **Historical Data**: Yahoo Finance API is used for maintaing market cap and historical prices data. It also gives stock splits data which is used for backcomputing stock data.
+- **Split Adjusted**: Handling Splitting of stocks for calculating share
 - **In-Memory Database**: Uses SQLite for efficient data storage and retrieval
 - **Interactive Dashboard**: Built with Streamlit for real-time visualization
 - **Automated Updates**: Daily recalculation of index values and constituents
-
-## Requirements
-
-- Python 3.8+
-- pandas >= 2.0.0
-- yfinance >= 0.2.0
-- streamlit >= 1.40.0
-- requests >= 2.32.0
-- sqlite3 (included in Python standard library)
 
 ## Installation
 
