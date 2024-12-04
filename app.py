@@ -18,7 +18,7 @@ def main():
     # Initialize index
     Hedgineer_index = HedgineerIndex(db_manager.cursor)
     
-    # Calculate index for last 50 days
+    # Calculate index for last LOOKBACK_DAYS_FOR_UI days
     for date in pd.date_range(datetime.now(), periods=LOOKBACK_DAYS_FOR_UI, freq='-1D').strftime('%Y-%m-%d'):
         Hedgineer_index.calculate_index_for_day(date)
     

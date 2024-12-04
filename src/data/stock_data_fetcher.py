@@ -1,7 +1,7 @@
 import yfinance as yf
 import pandas as pd
 import requests
-from constants import NASDAQ_API_URL, NASDAQ_API_PERIOD
+from constants import NASDAQ_API_URL, YFINANCE_DEFAULT_LOOKBACK_PERIOD
 from typing import Dict, Optional
 
 class StockDataFetcher:
@@ -70,8 +70,39 @@ class StockDataFetcher:
 
         return historical_data[['Date', 'Share Price', 'Market Cap', 'Effective Shares Outstanding']]
 
-    def get_us_stocks_universe(self, period: str = NASDAQ_API_PERIOD) -> Dict[str, pd.DataFrame]:
-        """Fetches data for US stocks from Nasdaq API."""
+    def get_us_stocks_universe(self, period: str = YFINANCE_DEFAULT_LOOKBACK_PERIOD) -> Dict[str, pd.DataFrame]:
+        """
+        Fetches historical market capitalization data for a universe of US stocks.
+
+        This method retrieves a list of US stock tickers from the Nasdaq API and then
+        fetches the historical market capitalization data for each ticker using the
+        `get_historical_market_cap` method. The data is returned as a dictionary where
+        each key is a stock ticker symbol and the value is a DataFrame containing the
+        historical data.
+
+        Parameters:
+        ----------
+        period : str, optional
+            The lookback period for fetching historical data (default is YFINANCE_DEFAULT_LOOKBACK_PERIOD).
+
+        Returns:
+        -------
+        Dict[str, pd.DataFrame]
+            A dictionary where each key is a stock ticker symbol and the value is a DataFrame
+            containing the historical market capitalization data for that stock.
+
+        Raises:
+        ------
+        ConnectionError:
+            If there is an error fetching the stock universe from the Nasdaq API.
+
+        Notes:
+        -----
+        - The method uses the Nasdaq API to fetch a list of stock tickers.
+        - The Yahoo Finance API is used to fetch historical data for each ticker.
+        - If an error occurs while fetching data for a specific ticker, it is logged and the method
+          continues with the next ticker.
+        """
         nasdaq_url = f'{NASDAQ_API_URL}?limit={self.instruments_to_fetch_count}'
         headers = {
             'User-Agent': 'Mozilla/5.0',

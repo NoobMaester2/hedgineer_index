@@ -7,7 +7,22 @@ class HedgineerIndex:
         self.cursor = cursor
 
     def calculate_index_for_day(self, date: str):
-        """Calculate and store Hedgineer index for a specific day."""
+        """
+        Calculate and store the Hedgineer index for a specific day.
+
+        This method retrieves stock data for the given date, sorts the stocks
+        by market capitalization in descending order, and selects the top
+        stocks based on the INDEX_CONSTITUENTS_COUNT. It then calculates the
+        index value as the average share price of these top stocks and stores
+        the result in the 'index_data' table along with the composition of
+        the index.
+
+        Parameters:
+        date (str): The date for which to calculate the index, in 'YYYY-MM-DD' format.
+
+        Returns:
+        None
+        """
         self.cursor.execute('''
             SELECT name FROM sqlite_master WHERE type='table' AND name='stocks';
         ''')
